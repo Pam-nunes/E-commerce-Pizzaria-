@@ -1,0 +1,42 @@
+﻿body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.grid-section, .edit-section {
+    margin-bottom: 40px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: inline-block;
+        width: 80px;
+        font-weight: bold;
+    }
+
+    .form-group input[type="text"] {
+        width: 300px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+    }
+
+.tabela th {
+    background-color: #f2f2f2;
+}
+
+.tabela td, .tabela th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}

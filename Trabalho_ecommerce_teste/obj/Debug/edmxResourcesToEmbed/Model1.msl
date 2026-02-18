@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LaFlorencaModelStoreContainer" CdmEntityContainer="LaFlorencaEntities">
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="LaFlorencaModel.Categorias">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="LaFlorencaModel.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SenhaHash" ColumnName="SenhaHash" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="IsBloqueado" ColumnName="IsBloqueado" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PedidoItens">
+      <EntityTypeMapping TypeName="LaFlorencaModel.PedidoItens">
+        <MappingFragment StoreEntitySet="PedidoItens">
+          <ScalarProperty Name="PedidoItemId" ColumnName="PedidoItemId" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="PrecoUnitario" ColumnName="PrecoUnitario" />
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+          <ScalarProperty Name="ProdutoId" ColumnName="ProdutoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedidos">
+      <EntityTypeMapping TypeName="LaFlorencaModel.Pedidos">
+        <MappingFragment StoreEntitySet="Pedidos">
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+          <ScalarProperty Name="DataPedido" ColumnName="DataPedido" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="MotivoCancelamento" ColumnName="MotivoCancelamento" />
+          <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produtos">
+      <EntityTypeMapping TypeName="LaFlorencaModel.Produtos">
+        <MappingFragment StoreEntitySet="Produtos">
+          <ScalarProperty Name="ProdutoId" ColumnName="ProdutoId" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="ImagemUrl" ColumnName="ImagemUrl" />
+          <ScalarProperty Name="Estoque" ColumnName="Estoque" />
+          <ScalarProperty Name="Data_Cadastro" ColumnName="Data_Cadastro" />
+          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

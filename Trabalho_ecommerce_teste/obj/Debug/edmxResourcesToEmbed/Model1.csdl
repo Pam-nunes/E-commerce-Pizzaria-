@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaFlorencaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="CategoriaId" />
+    </Key>
+    <Property Name="CategoriaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Produtos" Relationship="Self.FK_Produtos_Categorias" FromRole="Categorias" ToRole="Produtos" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ClienteId" />
+    </Key>
+    <Property Name="ClienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SenhaHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="IsBloqueado" Type="Boolean" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Pedidos" Relationship="Self.FK_Pedidos_Clientes" FromRole="Clientes" ToRole="Pedidos" />
+  </EntityType>
+  <EntityType Name="PedidoItens">
+    <Key>
+      <PropertyRef Name="PedidoItemId" />
+    </Key>
+    <Property Name="PedidoItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantidade" Type="Int32" Nullable="false" />
+    <Property Name="PrecoUnitario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PedidoId" Type="Int32" Nullable="false" />
+    <Property Name="ProdutoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pedidos" Relationship="Self.FK_PedidoItens_Pedidos" FromRole="PedidoItens" ToRole="Pedidos" />
+    <NavigationProperty Name="Produtos" Relationship="Self.FK_PedidoItens_Produtos" FromRole="PedidoItens" ToRole="Produtos" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="PedidoId" />
+    </Key>
+    <Property Name="PedidoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataPedido" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="MotivoCancelamento" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ValorTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ClienteId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_Pedidos_Clientes" FromRole="Pedidos" ToRole="Clientes" />
+    <NavigationProperty Name="PedidoItens" Relationship="Self.FK_PedidoItens_Pedidos" FromRole="Pedidos" ToRole="PedidoItens" />
+  </EntityType>
+  <EntityType Name="Produtos">
+    <Key>
+      <PropertyRef Name="ProdutoId" />
+    </Key>
+    <Property Name="ProdutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Preco" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ImagemUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Estoque" Type="Int32" Nullable="false" />
+    <Property Name="Data_Cadastro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categorias" Relationship="Self.FK_Produtos_Categorias" FromRole="Produtos" ToRole="Categorias" />
+    <NavigationProperty Name="PedidoItens" Relationship="Self.FK_PedidoItens_Produtos" FromRole="Produtos" ToRole="PedidoItens" />
+  </EntityType>
+  <Association Name="FK_Produtos_Categorias">
+    <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
+    <End Role="Produtos" Type="Self.Produtos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="CategoriaId" />
+      </Principal>
+      <Dependent Role="Produtos">
+        <PropertyRef Name="CategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedidos_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ClienteId" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidoItens_Pedidos">
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PedidoItens" Type="Self.PedidoItens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="PedidoId" />
+      </Principal>
+      <Dependent Role="PedidoItens">
+        <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidoItens_Produtos">
+    <End Role="Produtos" Type="Self.Produtos" Multiplicity="1" />
+    <End Role="PedidoItens" Type="Self.PedidoItens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produtos">
+        <PropertyRef Name="ProdutoId" />
+      </Principal>
+      <Dependent Role="PedidoItens">
+        <PropertyRef Name="ProdutoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LaFlorencaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="PedidoItens" EntityType="Self.PedidoItens" />
+    <EntitySet Name="Pedidos" EntityType="Self.Pedidos" />
+    <EntitySet Name="Produtos" EntityType="Self.Produtos" />
+    <AssociationSet Name="FK_Produtos_Categorias" Association="Self.FK_Produtos_Categorias">
+      <End Role="Categorias" EntitySet="Categorias" />
+      <End Role="Produtos" EntitySet="Produtos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedidos_Clientes" Association="Self.FK_Pedidos_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidoItens_Pedidos" Association="Self.FK_PedidoItens_Pedidos">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="PedidoItens" EntitySet="PedidoItens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidoItens_Produtos" Association="Self.FK_PedidoItens_Produtos">
+      <End Role="Produtos" EntitySet="Produtos" />
+      <End Role="PedidoItens" EntitySet="PedidoItens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

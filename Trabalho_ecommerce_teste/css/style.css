@@ -1,0 +1,346 @@
+﻿/* =======================================
+   REVISÃO CSS: TEMA PIZZARIA CLEAN E HARMÔNICO
+   ======================================= */
+
+/* -------- VARIÁVEIS DE CORES -------- */
+/* Paleta baseada em tons de pizza (molho, massa, manjericão etc.) */
+:root {
+    --vermelho-principal: #583030; /* Vermelho principal (molho) */
+    --verde-principal: #008000; /* Verde (manjericão) */
+    --creme-claro: #FDFBF8; /* Fundo claro (massa) */
+    --cinza-fundo-secao: #F5F5F5; /* Fundo suave das seções */
+    --texto-escuro: #333333; /* Cor padrão dos textos */
+    --texto-secundario: #6C757D; /* Textos complementares */
+    --detalhe-borda: #E0E0E0; /* Linhas e bordas sutis */
+}
+
+/* -------- RESET BÁSICO -------- */
+/* Remove margens/paddings padrão e define box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configura estilo base do corpo da página */
+body {
+    background-color: var(--creme-claro);
+    color: var(--texto-escuro);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth; /* Rolagem suave */
+}
+
+/* ===========================
+   NAVBAR E HEADER
+=========================== */
+
+/* Navbar fixa no topo com sombra leve */
+header, .navbar {
+    background-color: var(--creme-claro);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+    /* Reduz peso visual dos links */
+    .navbar .nav-link {
+        font-weight: 300 !important;
+    }
+
+/* Espaçamento e alinhamento da navbar */
+.navbar {
+    padding: 0.75rem 1rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo ajustada e com efeito ao passar o mouse */
+.brand-logo-dark {
+    height: 90px !important;
+    width: auto;
+    transition: transform 0.3s ease !important;
+}
+
+    .brand-logo-dark:hover {
+        transform: scale(1.05) !important; /* Leve aumento no hover */
+    }
+
+/* Links principais da navbar */
+.navbar-nav .nav-item .nav-link {
+    color: var(--texto-escuro);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding-bottom: 2px !important;
+    border-bottom: 3px solid transparent !important;
+}
+
+    /* Cor e sublinhado ao passar o mouse */
+    .navbar-nav .nav-item .nav-link:hover,
+    .navbar-nav .nav-item.active .nav-link {
+        border-bottom: 3px solid var(--vermelho-principal);
+        color: var(--vermelho-principal);
+    }
+
+/* Botão do menu mobile (ícone hambúrguer) */
+.navbar-toggler {
+    border: none;
+    color: var(--vermelho-principal);
+    font-size: 1.8rem;
+    background: none;
+}
+
+/* Ajustes no menu quando estiver colapsado (mobile) */
+@media (max-width: 992px) {
+    .navbar-collapse {
+        background-color: var(--creme-claro);
+        border-top: 1px solid var(--detalhe-borda);
+        padding: 10px 0;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        color: var(--texto-escuro);
+        border-bottom: none;
+        padding-left: 10px;
+    }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            background-color: var(--cinza-fundo-secao);
+            border-left: 5px solid var(--vermelho-principal);
+        }
+}
+
+/* -------- CARROSSEL / SLIDER -------- */
+/* Imagens do banner principal */
+.carousel-inner img {
+    width: 100%;
+    height: 87vh;
+    object-fit: cover;
+    height: auto;
+}
+
+/* ===========================
+   SEÇÕES E DESTAQUES
+=========================== */
+
+/* Espaçamento geral das seções */
+.section {
+    padding: 80px 0;
+}
+
+/* Fundo cinza suave */
+.bg-gray-100 {
+    background-color: var(--cinza-fundo-secao);
+}
+
+/* Título principal de cada seção */
+.section h3 {
+    text-align: center;
+    color: var(--vermelho-principal);
+    margin-bottom: 50px;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+/* Caixas de destaque (delivery, promoções etc.) */
+.box-icon-classic {
+    background-color: var(--creme-claro);
+    border: 1px solid var(--detalhe-borda);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(59, 1, 1, 0.05);
+    transition: all 0.3s;
+}
+
+    /* Efeito de destaque no hover */
+    .box-icon-classic:hover {
+        transform: translateY(-8px);
+        border-color: var(--vermelho-principal);
+        background-color: var(--vermelho-principal);
+        color: rgb(167, 98, 98);
+    }
+
+    /* Cores dos textos e links dentro das boxes */
+    .box-icon-classic .box-icon-classic-title a {
+        color: var(--texto-escuro);
+        transition: color 0.3s;
+    }
+
+    .box-icon-classic:hover .box-icon-classic-title a,
+    .box-icon-classic:hover .box-icon-classic-text {
+        color: rgb(244, 255, 249);
+    }
+
+/* ===========================
+   CARDS DE PRODUTOS
+=========================== */
+
+/* Evita barra de rolagem horizontal */
+html, body {
+    overflow-x: hidden !important;
+}
+
+/* Impede que o carrossel ultrapasse a tela */
+#carouselPizzas,
+#carouselPizzas .carousel-inner,
+#carouselPizzas .carousel-item {
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+    /* Ajusta imagens do carrossel */
+    #carouselPizzas .carousel-item img,
+    #carouselPizzas .carousel-pizza-img {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
+    }
+
+    /* Remove indicadores e legendas */
+    #carouselPizzas .carousel-indicators,
+    #carouselPizzas .carousel-caption {
+        display: none !important;
+    }
+
+/* Remove barra de rolagem do navegador */
+::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+}
+
+/* -------- UNIFORMIZAÇÃO DE CARDS -------- */
+
+/* Define tamanho fixo para imagens dos cards */
+.card-img-top {
+    height: 220px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    width: 100%;
+    transition: transform 0.3s ease !important;
+}
+
+/* Mantém altura mínima das descrições */
+.card-body .card-text {
+    min-height: 70px;
+    margin-bottom: 10px;
+}
+
+/* Organiza conteúdo interno dos cards */
+.card-body {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilo geral dos cards */
+.card, .product {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
+}
+
+    /* Efeito de elevação ao passar o mouse */
+    .card:hover, .product:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+/* Nome e preço dos produtos */
+.product-title {
+    color: var(--texto-escuro);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.product-price {
+    color: var(--vermelho-principal);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.product-price-old {
+    color: var(--texto-secundario);
+}
+
+/* Botões principais */
+.btn-primary, .button-primary {
+    background-color: var(--vermelho-principal);
+    border-color: var(--vermelho-principal);
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+    /* Hover nos botões */
+    .btn-primary:hover, .button-primary:hover {
+        background-color: #533a3a;
+        border-color: #A32525;
+    }
+
+/* Imagens do carrossel de pizzas */
+.carousel-pizza-img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .carousel-pizza-img {
+        height: 250px;
+    }
+}
+
+/* ===========================
+   RODAPÉ
+=========================== */
+
+/* Fundo escuro e texto claro */
+footer {
+    background-color: #4A0505;
+    color: var(--creme-claro);
+    padding: 60px 0 0;
+}
+
+    /* Títulos do rodapé */
+    footer h5 {
+        font-weight: 600;
+        color: white;
+    }
+
+    /* Links do rodapé */
+    footer a {
+        color: var(--detalhe-borda);
+        transition: color 0.3s;
+    }
+
+        footer a:hover {
+            color: var(--vermelho-principal);
+        }
+
+    /* Barra inferior com direitos autorais */
+    footer .bg-secondary {
+        background-color: #583030 !important;
+        padding: 15px 0 !important;
+        margin-top: 30px;
+    }
+
+#btnSalvar {
+    background-color: var(--vermelho-principal);
+    border-color: var(--vermelho-principal);
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    color: white;
+}
